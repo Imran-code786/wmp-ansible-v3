@@ -8,12 +8,12 @@
 
 - name: Copy service file
   ansible.builtin.copy:
-    src: analytics-service.service
-    dest: /etc/systemd/system/analytics-service.service
+    src: "{{ COMPONENT }}.service"
+    dest: /etc/systemd/system/{{ COMPONENT }}.service
 
 - name: Start analytics-service
   ansible.builtin.systemd_service:
-    name: analytics-service
+    name: "{{ COMPONENT }}"
     daemon_reload: yes
     enabled: yes
     state: restarted
